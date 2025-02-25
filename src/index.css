@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+@theme {
+    --color-primary-color :#00927c;
+    --color-secondary-color:#EAF0F1;
+}
+
+code{
+    font-family:  source-code-pro,Menlo,Monaco,Consolas,'Courier NEew';
+}
+
+.logo{
+    .pacifico-regular {
+        font-family: "Pacifico", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      
+}
