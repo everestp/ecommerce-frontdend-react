@@ -7,6 +7,7 @@ import { ThemeProvider } from '@emotion/react'
 import customTheme from '../Theme/customTheme'
 import Home from './customer/pages/Home/Home'
 import Product from './customer/pages/Product/Product'
+import ProductDetails from './customer/pages/Page Details/ProductDetails'
 function App() {
  
 
@@ -17,7 +18,8 @@ function App() {
 
 <NavBar/>
 {/* <Home/> */}
-<Product/>
+{/* <Product/> */}
+<ProductDetails/>
 </ThemeProvider>
 
    
