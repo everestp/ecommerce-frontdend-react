@@ -14,7 +14,7 @@ import { ChildCare } from '@mui/icons-material'
 const categoryTwo :{[key:string]:any[]} ={
     men:menLevelTwo,
     women:womenLevelTwo,
-    electronic:electronicsLevelTwo,
+    electronics:electronicsLevelTwo,
     home_furniture :furnitureLevelTwo,
 
     
@@ -23,7 +23,7 @@ const categoryTwo :{[key:string]:any[]} ={
 const categoryThree:{[key:string]:any[]}= {
     men:menLevelThree,
     women:womenLevelThree,
-    electronic:electronicsLevelThree,
+    electronics:electronicsLevelThree,
     home_furniture :furnitureLevelThree,
 }
 
