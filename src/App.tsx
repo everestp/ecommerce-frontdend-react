@@ -21,8 +21,8 @@ function App() {
 <NavBar/>
 {/* <Home/>
 <Product/>
-<ProductDetails/> */}
-{/* <Review/> */}
+<ProductDetails/> 
+ <Review/> */}
 <Cart/>
 </ThemeProvider>
 

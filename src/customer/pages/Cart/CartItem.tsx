@@ -1,6 +1,7 @@
 import { Add, Close, Remove } from "@mui/icons-material";
 import { Button, Divider, IconButton } from "@mui/material";
 import React from "react";
+import PricingCard from "./PricingCard";
 
 const CartItem = () => {
   const handleUpdateQuantity = () => {
