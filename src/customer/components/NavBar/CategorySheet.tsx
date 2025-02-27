@@ -7,41 +7,27 @@ import { furnitureLevelTwo } from '../../../data/category/level two/furnitureLev
 import { womenLevelThree } from '../../../data/category/level three/womenLevelThree'
 import { furnitureLevelThree } from '../../../data/category/level three/furnitureLevelThree'
 import { menLevelThree } from '../../../data/category/level three/menLevelThree'
+
 import { Box } from '@mui/material'
 import { ChildCare } from '@mui/icons-material'
 
 
-<<<<<<< HEAD
+
 const categoryTwo :{[key:string]:any[]} ={
     men:menLevelTwo,
     women:womenLevelTwo,
     electronics:electronicsLevelTwo,
     home_furniture :furnitureLevelTwo,
-=======
-const categoryTwo: { [key: string]: any[] } = {
-    men: menLevelTwo,
-    women: womenLevelTwo,
-    electronics: electronicsLevelTwo,
-    home_furniture: furnitureLevelTwo,
->>>>>>> 654dc3f5d85bca64b6be7c4d21de414cf3947f1f
 
 }
 
-<<<<<<< HEAD
 const categoryThree:{[key:string]:any[]}= {
     men:menLevelThree,
     women:womenLevelThree,
     electronics:electronicsLevelThree,
     home_furniture :furnitureLevelThree,
-=======
-const categoryThree: { [key: string]: any[] } = {
-    men: menLevelThree,
-    women: womenLevelThree,
-    electronics: electronicsLevelThree,
-    home_furniture: furnitureLevelThree,
->>>>>>> 654dc3f5d85bca64b6be7c4d21de414cf3947f1f
-}
 
+}
 const CategorySheet = ({ selectedCategory}: any) => {
     const childCategory = (category: any, parentCategoryId: any) => {
         return category.filter((child: any) => child.parentCategoryId == parentCategoryId)
