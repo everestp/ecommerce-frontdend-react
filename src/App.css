@@ -3,3 +3,9 @@
     --color-primary :#00927c;
     --color-secondary:#EAF0F1;
 } */
+
+
+.border {
+    border-width: 0.1px !important;
+  }
+  

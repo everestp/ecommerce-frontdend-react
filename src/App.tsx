@@ -10,6 +10,8 @@ import Product from './customer/pages/Product/Product'
 import ProductDetails from './customer/pages/Page Details/ProductDetails'
 import Review from './customer/pages/Review/Review'
 import Cart from './customer/pages/Cart/Cart'
+import Checkout from './customer/pages/checkout/Checkout'
+import AddressForm from './customer/pages/checkout/AddressForm'
 function App() {
  
 
@@ -22,8 +24,10 @@ function App() {
 {/* <Home/>
 <Product/>
 <ProductDetails/> 
- <Review/> */}
-<Cart/>
+ <Review/>
+<Cart/> */}
+<Checkout/>
+{/* <AddressForm/> */}
 </ThemeProvider>
 
    
