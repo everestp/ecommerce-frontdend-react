@@ -12,6 +12,7 @@ import Review from './customer/pages/Review/Review'
 import Cart from './customer/pages/Cart/Cart'
 import Checkout from './customer/pages/checkout/Checkout'
 import AddressForm from './customer/pages/checkout/AddressForm'
+import Account from './customer/pages/Account/Account'
 function App() {
  
 
@@ -25,9 +26,10 @@ function App() {
 <Product/>
 <ProductDetails/> 
  <Review/>
-<Cart/> */}
+<Cart/>
 <Checkout/>
-{/* <AddressForm/> */}
+<AddressForm/> */}
+<Account/>
 </ThemeProvider>
 
    
