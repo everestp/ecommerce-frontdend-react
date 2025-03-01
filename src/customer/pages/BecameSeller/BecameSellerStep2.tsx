@@ -2,38 +2,15 @@ import { Box, Button, formControlClasses, Grid2, TextField } from "@mui/material
 import React from "react";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup"
+import BecameSellerStep2 from "./BecameSellerStep2";
 
-const AddressFormSchema =Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  mobile: Yup.string().required("Mobile number is required").matches(/^[6-9]\d{9}$/, "Invalid mobile number"),
-  pinCode: Yup.string().required("Pin code is required").matches(/^[1-9][0-9]{5}$/, "Invalid pin code"),
-  address: Yup.string().required("Address is required"),
-  city: Yup.string().required("City is required"),
-  state: Yup.string().required("State is required"),
-  locality: Yup.string().required("Locality is required"),
-    GSTIN: Yup.string().required('GSTIN is required')
-})
 
-const AddressForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      mobile: "",
-      pinCode: "",
-      address: "",
-      city: "",
-      state: "",
-      locality: "",
-    },
-    validationSchema: AddressFormSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+const BecameSellerFormStep2 = ({formik}:any) => {
+
 console.log("formik eroor ",formik.touched.name)
   return (
     <Box sx={{ max: "auto" }}>
-      <p className="text-xl font-bold text-center pb-5">Contact Detail</p>
+      <p className="text-xl font-bold text-center pb-5">Pickup Address</p>
       <form  className=" items-center" onSubmit={formik.handleSubmit}>
         <Grid2 container spacing={3}>
           {/* gird-1 */}
@@ -132,8 +109,6 @@ console.log("formik eroor ",formik.touched.name)
               helperText={formik.touched.state && formik.errors.state}
             />
           </Grid2>
-
-          
           <Grid2 size={{xs:12}}>
 
             <Button fullWidth type="submit" variant="contained" sx={{py :"14px"}}>
@@ -147,4 +122,4 @@ console.log("formik eroor ",formik.touched.name)
   );
 };
 
-export default AddressForm;
+export default BecameSellerFormStep2;

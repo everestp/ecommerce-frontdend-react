@@ -14,6 +14,7 @@ import Checkout from './customer/pages/checkout/Checkout'
 import AddressForm from './customer/pages/checkout/AddressForm'
 import Account from './customer/pages/Account/Account'
 import { Route, Routes } from 'react-router'
+import BecameSeller from './customer/pages/BecameSeller/BecameSeller'
 function App() {
  
 
@@ -40,8 +41,10 @@ function App() {
 <Route path='/cart' element={<Cart/>}/>
 <Route path='/checkout' element={<Checkout/>}/>
 <Route path='/account/*' element={<Account/>}/>
+<Route path='/become-seller' element={<BecameSeller/>}/>
 
 </Routes>
+
 </ThemeProvider>
 
    

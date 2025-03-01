@@ -73,7 +73,7 @@ export const NavBar = () => {
           <IconButton  onClick={()=>navigate("/cart")}>
             <AddShoppingCart className='text-gray-700' sx={{fontSize :29}} />
           </IconButton>
-         { isLarge && <Button  startIcon ={<Storefront/>} variant='outlined'>
+         { isLarge && <Button onClick={()=> navigate("/become-seller")}  startIcon ={<Storefront/>} variant='outlined'>
             Become Seller
           </Button>
 }
