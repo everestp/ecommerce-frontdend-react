@@ -1,5 +1,6 @@
 import React from "react";
 import SellerDrawerList from "../../components/SellerDrawerList/SellerDrawerList";
+import SellerRoutes from "../../../Routes/SellerRoutes";
 
 const SellerDashBoard = () => {
   return (
@@ -10,7 +11,7 @@ const SellerDashBoard = () => {
             </section>
 
         <section className="p-10 w-full lg:w-[80%] overflow-y-auto">
-          seller routes
+         <SellerRoutes/>
         </section>
       </div>
     </div>
