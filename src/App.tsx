@@ -15,6 +15,7 @@ import AddressForm from './customer/pages/checkout/AddressForm'
 import Account from './customer/pages/Account/Account'
 import { Route, Routes } from 'react-router'
 import BecameSeller from './customer/pages/BecameSeller/BecameSeller'
+import SellerDashBoard from './seller/pages/SellerDashBoard/SellerDashBoard'
 function App() {
  
 
@@ -41,7 +42,9 @@ function App() {
 <Route path='/cart' element={<Cart/>}/>
 <Route path='/checkout' element={<Checkout/>}/>
 <Route path='/account/*' element={<Account/>}/>
-<Route path='/become-seller' element={<BecameSeller/>}/>
+<Route path='/become-seller' element={<SellerDashBoard/>}/>
+<Route path='/seller/*' element={<SellerDashBoard/>}/>
+
 
 </Routes>
 

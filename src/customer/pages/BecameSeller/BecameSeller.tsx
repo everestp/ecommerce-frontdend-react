@@ -30,7 +30,7 @@ const BecameSeller = () => {
 
 
                 </div>
-                <img  className="w-full"src="https://cdn.pixabay.com/photo/2016/11/18/12/08/white-male-1834125_1280.jpg" alt="" />
+                <img  className="w-full"src="https://t3.ftcdn.net/jpg/03/23/64/30/360_F_323643059_0JHR7hq0sNJaxJKEFsjdYRNr0idN0fXr.jpg" alt="" />
 
             </div>
 
