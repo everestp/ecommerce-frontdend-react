@@ -10,6 +10,7 @@ import { menLevelThree } from '../../../data/category/level three/menLevelThree'
 
 import { Box } from '@mui/material'
 import { ChildCare } from '@mui/icons-material'
+import { useNavigate } from 'react-router'
 
 
 
@@ -29,6 +30,7 @@ const categoryThree:{[key:string]:any[]}= {
 
 }
 const CategorySheet = ({ selectedCategory}: any) => {
+    const navigate = useNavigate();
     const childCategory = (category: any, parentCategoryId: any) => {
         return category.filter((child: any) => child.parentCategoryId == parentCategoryId)
     }
@@ -47,7 +49,7 @@ const CategorySheet = ({ selectedCategory}: any) => {
                             <ul className='space-y-3'>
                                 {childCategory(categoryThree[selectedCategory], item.categoryId).map((item: any) =>
                                     <div>
-                                        <li className='hover:text-primary-color cursor-pointer'>
+                                        <li   onClick={()=>navigate("/products/"+item.categoryId)} className='hover:text-primary-color cursor-pointer'>
                                             {item.name}
                                         </li>
                                     </div>

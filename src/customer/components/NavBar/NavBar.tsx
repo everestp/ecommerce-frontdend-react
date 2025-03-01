@@ -7,9 +7,11 @@ import { AddShoppingCart, FavoriteBorder, Storefront } from '@mui/icons-material
 import { useTheme } from '@mui/material';
 import CategorySheet from './CategorySheet';
 import { mainCategory } from '../../../data/mainCategory';
+import { useNavigate } from 'react-router';
 
 
 export const NavBar = () => {
+  const navigate = useNavigate()
   const theme =useTheme()
   const isLarge = useMediaQuery(theme.breakpoints.up("lg"))
   const [selectedCategory,setSelectedCategory] =useState("men");
@@ -28,7 +30,7 @@ export const NavBar = () => {
 </IconButton>
 
 }
-<h1 className='logo cursor-pointer text-lg md:text-2xl text-primary-color'>
+<h1  onClick={()=>navigate("/")} className='logo cursor-pointer text-lg md:text-2xl text-primary-color'>
   Carten
 </h1>
 <div>
@@ -52,11 +54,15 @@ export const NavBar = () => {
             <SearchIcon/>
           </IconButton>
           {
-            false? <Button>
+            true? <Button
+            onClick={()=>navigate("/account/orders")}
+            className='flex items-center gap-2'
+            >
               <Avatar 
+              
               sx={{width :29, height :29}}
               src='https://media.licdn.com/dms/image/v2/D4D03AQFzjRVkW1Q7Tg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719747759442?e=1746057600&v=beta&t=qDDaGnKLRAppjZ8602qEXfxejZ73IHHJ-ANTFO4t63s'/>
-              <h1 className='font-semibold  lg:block'>Everest</h1>
+              <h1 className='font-semibold hidden lg:block'>Everest</h1>
             
 
             </Button> : <Button variant='contained'>Login</Button>
@@ -64,7 +70,7 @@ export const NavBar = () => {
           <IconButton>
             <FavoriteBorder sx={{fontSize :29}} />
           </IconButton>
-          <IconButton>
+          <IconButton  onClick={()=>navigate("/cart")}>
             <AddShoppingCart className='text-gray-700' sx={{fontSize :29}} />
           </IconButton>
          { isLarge && <Button  startIcon ={<Storefront/>} variant='outlined'>

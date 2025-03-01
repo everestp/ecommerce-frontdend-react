@@ -3,7 +3,7 @@ import UserAddressCard from './UserAddressCard'
 
 const Address = () => {
   return (
-    <div>
+    <div className='space-y-3'>
 {[1,1,1,1].map((item)=><UserAddressCard/>)}
 
 

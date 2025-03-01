@@ -13,6 +13,7 @@ import Cart from './customer/pages/Cart/Cart'
 import Checkout from './customer/pages/checkout/Checkout'
 import AddressForm from './customer/pages/checkout/AddressForm'
 import Account from './customer/pages/Account/Account'
+import { Route, Routes } from 'react-router'
 function App() {
  
 
@@ -29,7 +30,18 @@ function App() {
 <Cart/>
 <Checkout/>
 <AddressForm/> */}
-<Account/>
+{/* <Account/> */}
+
+<Routes>
+<Route path='/' element={<Home/>}/>
+<Route path='/products/:category' element={<Product/>}/>
+<Route path='/review/:productId' element={<Review/>}/>
+<Route path='/product-details/:categoryId/:name/:productId' element={<ProductDetails/>}/>
+<Route path='/cart' element={<Cart/>}/>
+<Route path='/checkout' element={<Checkout/>}/>
+<Route path='/account/*' element={<Account/>}/>
+
+</Routes>
 </ThemeProvider>
 
    
