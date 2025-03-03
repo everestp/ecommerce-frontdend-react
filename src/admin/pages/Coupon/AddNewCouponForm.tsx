@@ -70,7 +70,8 @@ const AddNewCouponForm = () => {
                helperText={formik.touched.discountPercentage && formik.errors.discountPercentage}
              />
 </Grid2>
-{/* Minimu
+
+{/* Minimum order */}
 <Grid2 size={{xs:12,sm:4}}> 
  <TextField
                fullWidth

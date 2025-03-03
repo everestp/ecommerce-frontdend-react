@@ -1,8 +1,11 @@
 import React from 'react'
+import HomeCategoryTable from './HomeCategoryTable'
 
 const ShopByCategory = () => {
   return (
-    <div>ShopByCategory</div>
+    <div>
+      <HomeCategoryTable/>
+    </div>
   )
 }
 
