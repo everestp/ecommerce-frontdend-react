@@ -17,8 +17,18 @@ import { Route, Routes } from 'react-router'
 import BecameSeller from './customer/pages/BecameSeller/BecameSeller'
 import SellerDashBoard from './seller/pages/SellerDashBoard/SellerDashBoard'
 import AdminDashBoard from './admin/pages/Dashboard/AdminDashBoard'
+import { useEffect } from 'react'
+import { fetchProducts } from './State/fetchProduct'
+import { useDispatch } from 'react-redux'
+import { useAppDispatch } from './State/Store'
+import { fetchSellerProfile } from './State/seller/sellerSlice'
 function App() {
- 
+
+  const dispatch = useAppDispatch();
+   useEffect(()=>{
+    dispatch(fetchSellerProfile(localStorage.getItem("jwt") || ""))
+    // fetchProducts()
+   },[])
 
 
   return (
@@ -26,14 +36,7 @@ function App() {
 <ThemeProvider theme={customTheme} >
 
 <NavBar/>
-{/* <Home/>
-<Product/>
-<ProductDetails/> 
- <Review/>
-<Cart/>
-<Checkout/>
-<AddressForm/> */}
-{/* <Account/> */}
+
 
 <Routes>
 <Route path='/' element={<Home/>}/>
