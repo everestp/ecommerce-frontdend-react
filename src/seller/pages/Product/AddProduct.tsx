@@ -36,6 +36,7 @@ const categoryThree:{[key:string]:any[]}= {
 const AddProduct = () => {
   const [uploadImage, setUploadingImage] = useState(false);
   const [snackbarOpen, setOpenSnackbar] = useState(false);
+  const dispatch
   const formik = useFormik({
     initialValues: {
       title: "",

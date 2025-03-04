@@ -13,23 +13,33 @@ import Cart from './customer/pages/Cart/Cart'
 import Checkout from './customer/pages/checkout/Checkout'
 import AddressForm from './customer/pages/checkout/AddressForm'
 import Account from './customer/pages/Account/Account'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useNavigate } from 'react-router'
 import BecameSeller from './customer/pages/BecameSeller/BecameSeller'
 import SellerDashBoard from './seller/pages/SellerDashBoard/SellerDashBoard'
 import AdminDashBoard from './admin/pages/Dashboard/AdminDashBoard'
 import { useEffect } from 'react'
 import { fetchProducts } from './State/fetchProduct'
 import { useDispatch } from 'react-redux'
-import { useAppDispatch } from './State/Store'
+import { useAppDispatch, useAppSelector } from './State/Store'
 import { fetchSellerProfile } from './State/seller/sellerSlice'
+import { fetchSellerProducts } from './State/seller/sellerProductSlice'
 function App() {
 
   const dispatch = useAppDispatch();
+  const {seller}=useAppSelector(store=>store)
+  const navigate = useNavigate()
    useEffect(()=>{
     dispatch(fetchSellerProfile(localStorage.getItem("jwt") || ""))
+    //  dispatch(fetchSellerProducts(localStorage.getItem("jwt") || ""))
+
+   
     // fetchProducts()
    },[])
-
+useEffect(()=>{
+if(seller.profile){
+  navigate("/seller")
+}
+},[])
 
   return (
     
