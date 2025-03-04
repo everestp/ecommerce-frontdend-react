@@ -16,6 +16,8 @@ import Grid2 from '@mui/material/Grid2/Grid2';
 import { Button, CircularProgress, FormControl, FormHelperText, IconButton, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { Close, AddPhotoAlternateOutlined } from '@mui/icons-material';
 import { mainCategory } from '../../../data/mainCategory';
+import { useAppDispatch } from '../../../State/Store';
+import { createProduct } from '../../../State/seller/sellerProductSlice';
 
 const categoryTwo: { [key: string]: any[] } = {
     men: menLevelTwo,
@@ -36,7 +38,7 @@ const categoryThree:{[key:string]:any[]}= {
 const AddProduct = () => {
   const [uploadImage, setUploadingImage] = useState(false);
   const [snackbarOpen, setOpenSnackbar] = useState(false);
-  const dispatch
+  const dispatch =useAppDispatch();
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -53,13 +55,15 @@ const AddProduct = () => {
     },
     onSubmit:(values)=>{
       console.log(values)
+      dispatch(createProduct({request:values,jwt:localStorage.getItem("jwt")}))
     }
   });
 
   const hadleImageChange = async (event:any)=>{
-    const file = event.target.file[0];
-    setUploadingImage(true);
+    const file = event.target.file;
     const image = await uploadToCloudinary(file);
+    setUploadingImage(true);
+ 
 
     formik.setFieldValue("images",[...formik.values.images,image]);
     setUploadingImage(false);
