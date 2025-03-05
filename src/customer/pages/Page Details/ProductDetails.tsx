@@ -8,9 +8,11 @@ import SimilarProductCard from "./SimilarProductCard";
 import SimilarProuct from "./SimilarProuct";
 import Review from "../Review/Review";
 import ReviewCard from "../Review/ReviewCard";
+import { useAppDispatch } from "../../../State/Store";
 
 const ProductDetails = () => {
   const [quantity,setQuantity]=useState(0);
+  const dispatch = useAppDispatch();
   return (
     <div className="px-5 g:px-20 pt-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

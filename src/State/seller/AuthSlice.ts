@@ -32,3 +32,19 @@ import { api } from "../../config/Api";
 
 
 )
+
+export const logout = createAsyncThunk<any,any>(
+    "auth/logout",
+    async (navigate, { rejectWithValue }) => {
+      try {
+        localStorage.clear()
+        const response = await api.post("/auth/logout");
+        console.log("logout success");
+        navigate("/")
+       // return response.data; // If you want to return the response data
+      } catch (error) {
+        console.error("DEBUG: Logout with Error - - -", error);
+        
+      }
+    }
+  );

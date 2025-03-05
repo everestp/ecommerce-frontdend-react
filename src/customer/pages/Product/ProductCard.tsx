@@ -3,20 +3,19 @@ import "./ProductCard.css"
 import { Button } from '@mui/material'
 import { Favorite, ModeComment } from '@mui/icons-material'
 import { teal } from '@mui/material/colors'
-const images =[
-  "https://images.pexels.com/photos/26892209/pexels-photo-26892209/free-photo-of-portrait-of-a-man-wearing-a-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=600",
-  "https://images.pexels.com/photos/30850541/pexels-photo-30850541/free-photo-of-casual-portrait-overlooking-rio-de-janeiro-coast.jpeg?auto=compress&cs=tinysrgb&w=600",
-  "https://images.pexels.com/photos/30880513/pexels-photo-30880513/free-photo-of-man-sitting-with-dog-on-city-steps-in-buenos-aires.jpeg?auto=compress&cs=tinysrgb&w=600"
-]
+import { Products } from '../../../types/ProductTypes'
 
-const ProductCard = () => {
+
+const ProductCard = ({item}:{item:Products}) => {
+  console.log("Itwm fro Prodfuxct",item)
   const [currentImage,setCurrentImage]=useState(0)
   const [isHovered,setIsHovered]=useState(false);
   useEffect(()=>{
+   
     let interval:any 
     if(isHovered){
       interval =setInterval(() => {
-        setCurrentImage((prevImage)=>(prevImage+1)%images.length)
+        setCurrentImage((prevImage)=>(prevImage+1)%item.images.length)
       }, 1000);
     }
     else if(interval){
@@ -34,7 +33,7 @@ const ProductCard = () => {
       onMouseEnter={()=> setIsHovered(true)}
       onMouseLeave={()=> setIsHovered(false)}
       >
-        {images.map((item,index)=><img className='card-media object-top' src={item} alt=""
+        {item.images.map((item,index)=><img className='card-media object-top' src={item} alt=""
          style={{transform :`translateX(${(index-currentImage)*100}%)`}}/>)}
          
          {/* This div is appear ony when it over */}
@@ -63,14 +62,14 @@ const ProductCard = () => {
 
       <div className='details pt-3 space-y-1 group-hover-effect rounded-md '>
         <div className='name'>
-          <h1>Nike</h1>
-          <p>White Shirt</p>
+          <h1>{item.seller?.businessDetails.businessName}</h1>
+          <p>{item.title}</p>
 
         </div>
         <div className='price flex items-center gap-3'>
-          <span  className='font-sans text-gray-800'> Rs 300</span>
-          <span className='thin-line-through text-gray-400'>Rs 999</span>
-          <span className='text-primary-color font-semibold'>60%</span>
+          <span  className='font-sans text-gray-800'> Rs {item.sellingPrice}</span>
+          <span className='thin-line-through text-gray-400'>Rs {item.mrpPrice}</span>
+          <span className='text-primary-color font-semibold'>{item.discountPrice}%</span>
         </div>
 
       </div>

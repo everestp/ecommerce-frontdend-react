@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterSection from "./FilterSection";
 import ProductCard from "./ProductCard";
 import {
@@ -13,15 +13,25 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { FilterAlt } from "@mui/icons-material";
+import { FilterAlt, SearchTwoTone } from "@mui/icons-material";
 import e from "cors";
+import store, { useAppDispatch, useAppSelector } from "../../../State/Store";
+import { fetchAllProducts } from "../../../State/customer/ProductSlice";
+import { useParams, useSearchParams } from "react-router";
+import { Products } from "../../../types/ProductTypes";
 
 const Product = () => {
   const theme = useTheme();
   const isLarge = useMediaQuery(theme.breakpoints.up("lg"))
   const [sort,setSort]=useState();
   const [page,setPage] = useState(1);
+  const dispatch = useAppDispatch();
 
+  const [searchParams,setSearchParams] =useSearchParams()
+  const {category} =useParams();
+
+ 
+const {product} = useAppSelector((store=>store))
   const handleSortChange =(event:any)=>{
     setSort(event.target.value)
 
@@ -29,6 +39,17 @@ const Product = () => {
  const handlePageChange =(value:number)=>{
   setPage(value);
  }
+
+ 
+  useEffect(()=>{
+    // const [minPrice,maxPrice] =searchParams.get("price")?.split("-") || [];
+    dispatch(fetchAllProducts({category}))
+
+
+  },[category])
+
+
+
   return (
     <div className="-z-10 mt-10">
       <div className="text-3xl text-center font-bold text-gray-700 pb-5 px-9">
@@ -69,8 +90,13 @@ const Product = () => {
           </div>
           <Divider/>
           <section className="products_section grid sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-4 gap-y-5 px-5 justify-center">
-           {[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((items)=><ProductCard/>)}
-
+           {product.products.map((item:Products)=>
+           
+           <ProductCard item={item}/>
+          
+           
+          )}
+           
        
 
           </section>
