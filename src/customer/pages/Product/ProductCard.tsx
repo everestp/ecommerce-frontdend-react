@@ -4,12 +4,14 @@ import { Button } from '@mui/material'
 import { Favorite, ModeComment } from '@mui/icons-material'
 import { teal } from '@mui/material/colors'
 import { Products } from '../../../types/ProductTypes'
+import { useNavigate } from 'react-router'
 
 
 const ProductCard = ({item}:{item:Products}) => {
   console.log("Itwm fro Prodfuxct",item)
   const [currentImage,setCurrentImage]=useState(0)
   const [isHovered,setIsHovered]=useState(false);
+  const navigate = useNavigate();
   useEffect(()=>{
    
     let interval:any 
@@ -28,7 +30,7 @@ const ProductCard = ({item}:{item:Products}) => {
   },[isHovered])
   return (
     <>
-    <div className='group px-4 relative'>
+    <div onClick={()=>{navigate(`/product-details/${item.category?.categoryId}/${item.title}/${item.id}`)}} className='group px-4 relative'>
       <div className='card'
       onMouseEnter={()=> setIsHovered(true)}
       onMouseLeave={()=> setIsHovered(false)}

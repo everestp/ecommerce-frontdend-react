@@ -42,11 +42,24 @@ const {product} = useAppSelector((store=>store))
 
  
   useEffect(()=>{
-    // const [minPrice,maxPrice] =searchParams.get("price")?.split("-") || [];
+    const [minPrice,maxPrice] =searchParams.get("price")?.split("-") || [];
+    const color = searchParams.get("color");
+     console.log(localStorage.getItem("jwt"))
+   const minDiscount=searchParams.get("discount")?Number(searchParams.get("discount")):0;
+   const pageNumber =page-1;
     dispatch(fetchAllProducts({category}))
+    const newFilter ={
+      color:color || "",
+      minPrice :minPrice?Number(maxPrice):undefined,
+      maxPrice :maxPrice?Number(maxPrice):undefined,
+     
+      pageNumber
+
+    }
+    dispatch(fetchAllProducts(newFilter))
 
 
-  },[category])
+  },[category,searchParams])
 
 
 

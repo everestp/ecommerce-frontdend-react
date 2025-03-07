@@ -3,30 +3,32 @@ import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../../../State/Store";
-import { sendLoginSignupOtp} from "../../../State/seller/AuthSlice";
+import { sendLoginSignupOtp, signin, signup} from "../../../State/seller/AuthSlice";
 import { sellerLogin } from "../../../State/seller/sellerAuthSlice";
 
-const SellerLoginForm = () => {
+const RegisterForm = () => {
 const dispatch =useAppDispatch()
 
   const formik = useFormik({
     initialValues: {
       email: "",
       otp: "",
+      fullName:"",
     },
     onSubmit: (values) => {
       console.log("form data", values);
       
-      dispatch(sellerLogin({email:values.email,otp:values.otp}))
+      dispatch(signup(values))
     },
   });
 
   const handleSentOtp= ()=>{
 dispatch(sendLoginSignupOtp({email:formik.values.email}))
+console.log("otp send")
   }
   return (
     <Box sx={{ max: "auto" }}>
-      <p className="text-xl font-bold text-center pb-5 text-primary-color">Login As Seller</p>
+      <p className="text-xl font-bold text-center pb-5 text-primary-color">SignUp</p>
       <form className=" items-center" >
         <Grid2 container spacing={3}>
           {/* grid-2 Mobile */}
@@ -46,11 +48,14 @@ dispatch(sendLoginSignupOtp({email:formik.values.email}))
           {/* grid-3 otp */}
 
           {true && (
-            <Grid2 size={{ xs: 12 }}>
+             <Grid2 container spacing={3}>
+                
+ <Grid2 size={{ xs: 12 }}>
+  
               <TextField
                 fullWidth
                 name="otp"
-                label="otp"
+                label="OTP"
                 placeholder="Verification Code from Email"
                 value={formik.values.otp}
                 onChange={formik.handleChange}
@@ -58,17 +63,41 @@ dispatch(sendLoginSignupOtp({email:formik.values.email}))
                 helperText={formik.touched.otp && formik.errors.otp}
               />
             </Grid2>
-          )}
-{/* sent otp Button */}
-<Grid2 size={{ xs: 12 }} >
-  <Button onClick={handleSentOtp}fullWidth variant="contained" sx={{py:"11px"}}>
-Sent OTP
+
+            {/* Name of the customer */}
+            <Grid2 size={{ xs: 12 }}>
+              <TextField
+                fullWidth
+                name="fullName"
+                label="Name"
+                placeholder="Enter Your Full Name"
+                value={formik.values.fullName}
+                onChange={formik.handleChange}
+                error={formik.touched.fullName && Boolean(formik.errors.fullName)}
+                helperText={formik.touched.fullName && formik.errors.fullName}
+              />
+            </Grid2>
+            <Grid2 size={{ xs: 12 }} >
+  <Button onClick={()=>formik.handleSubmit() }  fullWidth variant="contained" sx={{py:"11px"}}>
+Register
   </Button>
  </Grid2>
 
- <Grid2 size={{ xs: 12 }} >
-  <Button onClick={()=>formik.handleSubmit() }  fullWidth variant="contained" sx={{py:"11px"}}>
-Login
+             </Grid2>
+           
+
+
+
+
+
+            
+          )}
+
+
+{/* sent otp Button */}
+<Grid2 size={{ xs: 12 }} >
+  <Button onClick={handleSentOtp} fullWidth  variant="contained" sx={{py:"11px"}}>
+Send OTP
   </Button>
  </Grid2>
 
@@ -79,4 +108,4 @@ Login
   );
 };
 
-export default SellerLoginForm;
+export default RegisterForm;

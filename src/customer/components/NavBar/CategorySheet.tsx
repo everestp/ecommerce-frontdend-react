@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { menLevelTwo } from '../../../data/category/level two/menLevelTwo'
 import { womenLevelTwo } from '../../../data/category/level two/womenLevelTwo'
 import { electronicsLevelThree } from '../../../data/category/level three/electronicsLevelThree'
@@ -31,11 +31,20 @@ const categoryThree:{[key:string]:any[]}= {
 }
 const CategorySheet = ({ selectedCategory}: any) => {
     const navigate = useNavigate();
+    const [showSheet,setShowSheet]= useState(true)
+    const handleSheet=()=>{
+        setShowSheet(!showSheet)
+    }
     const childCategory = (category: any, parentCategoryId: any) => {
         return category.filter((child: any) => child.parentCategoryId == parentCategoryId)
+       
     }
     console.log(selectedCategory)
     return (
+      <>
+      {
+        showSheet &&
+
         <Box sx={
             { zIndex: 2 }
         } className='bg-white shadow-lg lg:h-[500px] overflow-y-auto'>
@@ -49,7 +58,11 @@ const CategorySheet = ({ selectedCategory}: any) => {
                             <ul className='space-y-3'>
                                 {childCategory(categoryThree[selectedCategory], item.categoryId).map((item: any) =>
                                     <div>
-                                        <li   onClick={()=>navigate("/products/"+item.categoryId)} className='hover:text-primary-color cursor-pointer'>
+                                        <li   onClick={
+                                           
+                                            ()=>{
+                                            handleSheet()
+                                            navigate("/products/"+item.categoryId)}} className='hover:text-primary-color cursor-pointer'>
                                             {item.name}
                                         </li>
                                     </div>
@@ -64,6 +77,10 @@ const CategorySheet = ({ selectedCategory}: any) => {
             </div>
 
         </Box>
+      }
+       
+      </>  
+       
     )
 }
 

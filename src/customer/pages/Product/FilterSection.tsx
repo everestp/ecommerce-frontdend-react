@@ -152,7 +152,7 @@ className='text-2xl font-semibold ' id='brand'>Discount</FormLabel>
 aria-labelledby="brand"
 onChange={updateFilterParams}
 defaultValue=""
-name="color"
+name="minDiscount"
 
 >
 

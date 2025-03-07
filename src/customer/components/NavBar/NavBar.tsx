@@ -1,20 +1,22 @@
 import { Avatar, Box, Button, IconButton, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { AddShoppingCart, FavoriteBorder, Storefront } from '@mui/icons-material';
 import { useTheme } from '@mui/material';
 import CategorySheet from './CategorySheet';
 import { mainCategory } from '../../../data/mainCategory';
 import { useNavigate } from 'react-router';
+import { useAppSelector } from '../../../State/Store';
 
 
 export const NavBar = () => {
   const navigate = useNavigate()
+  const {auth} = useAppSelector(store=>store)
   const theme =useTheme()
   const isLarge = useMediaQuery(theme.breakpoints.up("lg"))
-  const [selectedCategory,setSelectedCategory] =useState("men");
+   const [selectedCategory,setSelectedCategory] =useState("men");
   const [showCategorySheet,setShowCategorySheet] =  useState(false);
   return (
   <>
@@ -36,6 +38,7 @@ export const NavBar = () => {
 <div>
   <ul className='flex items-center font-medium text-gray-800 gap-2'>
     {mainCategory.map((item)=><li
+
     onMouseLeave={()=>{
       setShowCategorySheet(false);
     }}
@@ -54,7 +57,7 @@ export const NavBar = () => {
             <SearchIcon/>
           </IconButton>
           {
-            true? <Button
+            auth.isLoggedIn ? <Button
             onClick={()=>navigate("/account/orders")}
             className='flex items-center gap-2'
             >
@@ -62,10 +65,10 @@ export const NavBar = () => {
               
               sx={{width :29, height :29}}
               src='https://media.licdn.com/dms/image/v2/D4D03AQFzjRVkW1Q7Tg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719747759442?e=1746057600&v=beta&t=qDDaGnKLRAppjZ8602qEXfxejZ73IHHJ-ANTFO4t63s'/>
-              <h1 className='font-semibold hidden lg:block'>Everest</h1>
+              <h1 className='font-semibold hidden lg:block'>{auth.user?.fullName}</h1>
             
 
-            </Button> : <Button variant='contained'>Login</Button>
+            </Button> : <Button onClick={()=> navigate("/login")} variant='contained'>Login</Button>
           }
           <IconButton>
             <FavoriteBorder sx={{fontSize :29}} />

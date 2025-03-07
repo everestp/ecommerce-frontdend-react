@@ -17,16 +17,18 @@ import { Route, Routes, useNavigate } from 'react-router'
 import BecameSeller from './customer/pages/BecameSeller/BecameSeller'
 import SellerDashBoard from './seller/pages/SellerDashBoard/SellerDashBoard'
 import AdminDashBoard from './admin/pages/Dashboard/AdminDashBoard'
-import { useEffect } from 'react'
+import { use, useEffect } from 'react'
 import { fetchProducts } from './State/fetchProduct'
 import { useDispatch } from 'react-redux'
 import { useAppDispatch, useAppSelector } from './State/Store'
 import { fetchSellerProfile } from './State/seller/sellerSlice'
 import { fetchSellerProducts } from './State/seller/sellerProductSlice'
+import { Auth } from './customer/pages/Auth/Auth'
+import { fetchUserProfile } from './State/seller/AuthSlice'
 function App() {
 
   const dispatch = useAppDispatch();
-  const {seller}=useAppSelector(store=>store)
+  const {seller,auth}=useAppSelector(store=>store)
   const navigate = useNavigate()
    useEffect(()=>{
     dispatch(fetchSellerProfile(localStorage.getItem("jwt") || ""))
@@ -39,7 +41,12 @@ useEffect(()=>{
 if(seller.profile){
   navigate("/seller")
 }
-},[])
+},[seller.profile])
+
+
+useEffect(()=>{
+dispatch(fetchUserProfile({jwt:auth.jwt || localStorage.getItem("jwt") }))
+},[auth.jwt])
 
   return (
     
@@ -50,6 +57,7 @@ if(seller.profile){
 
 <Routes>
 <Route path='/' element={<Home/>}/>
+<Route path='/login' element={<Auth/>}/>
 <Route path='/products/:category' element={<Product/>}/>
 <Route path='/review/:productId' element={<Review/>}/>
 <Route path='/product-details/:categoryId/:name/:productId' element={<ProductDetails/>}/>
@@ -58,6 +66,7 @@ if(seller.profile){
 <Route path='/account/*' element={<Account/>}/>
 <Route path='/become-seller' element={<BecameSeller/>}/>
 <Route path='/seller/*' element={<SellerDashBoard/>}/>
+
 <Route path='/admin/*' element={<AdminDashBoard/>}/>
 
 

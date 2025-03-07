@@ -6,6 +6,9 @@ import OrderDetails from './OrderDetails';
 import UseDetail from './UserDetail';
 import UserDetail from './UserDetail';
 import Address from './Address';
+import { logout } from '../../../State/seller/AuthSlice';
+import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../../State/Store';
 
 
 const menu = [
@@ -19,7 +22,15 @@ const menu = [
 const Account = () => {
   const navigate =useNavigate();
   const location= useLocation();
-  const handleClick=(item:any)=>navigate(item.path)
+  const dispatch = useAppDispatch();
+  const handleClick=(item:any)=>{
+    if(item.path==="/"){
+      // dispatch(logout(navigate))
+      dispatch(logout(navigate))
+    }
+    
+    navigate(item.path)
+  }
   return (
     <div className='px-5 lg:px-52 min-h-screen mt-10 '>
       <div>

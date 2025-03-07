@@ -2,10 +2,21 @@ import { Add, Close, Remove } from "@mui/icons-material";
 import { Button, Divider, IconButton } from "@mui/material";
 import React from "react";
 import PricingCard from "./PricingCard";
+import { Cart, CartItem } from "../../../types/cartType";
+import { useAppDispatch } from "../../../State/Store";
+import { updateCartItem } from "../../../State/customer/cartSlice";
 
-const CartItem = () => {
-  const handleUpdateQuantity = () => {
+const CartItemCard = ({item}:{item:CartItem}) => {
+
+  const dispatch = useAppDispatch();
+  
+  const handleUpdateQuantity = (value:number)=> () => {
     //update cart quantity
+    dispatch(updateCartItem({
+      jwt: localStorage.getItem("jwt") || "",
+      cartItemId: item.id,
+      cartItem: {quantity :item.quantity + value}
+    }));
   };
 
   return (
@@ -14,23 +25,22 @@ const CartItem = () => {
         <div>
           <img
             className="w-[90px] rounded-md"
-            src="https://images.pexels.com/photos/30835527/pexels-photo-30835527/free-photo-of-majestic-lion-roaring-in-natural-habitat.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load "
-            alt="leopard"
+            src={item.product.images[0]}
+            alt=""
           />
         </div>
         <div className="space-y-2">
-          <h1 className="font-semibold text-lg "> Rest Cloting</h1>
+          <h1 className="font-semibold text-lg ">{item.product.seller?.businessDetails.businessName}</h1>
           <p className="text-gray-600 font-medium text-sm">
-            This is the best clothing made with natural silk fiber and the best
-            part it is good
+           {item.product.title}
           </p>
           <p className="text-gray-400 text-sm">
             {" "}
-            <strong>Sold by:</strong> Carten Clothing Private Limited
+            <strong>Sold by:</strong> {item.product.seller?.businessDetails.businessName}
           </p>
           <p className="text-sm">7 days Replacement available</p>
           <p className="text-sm text-gray-900">
-            <strong>Quantity : </strong>28
+            <strong>Quantity :{item.product.quantity} </strong>{item.product.quantity}
           </p>
         </div>
       </div>
@@ -39,12 +49,12 @@ const CartItem = () => {
       <div className="flex justify-between items-center">
       <div className="px-5 py-2 flex justify-between items-center">
         <div className="flex items-center gap-2 w-[140px] justify-between">
-          <Button disabled={true} onClick={handleUpdateQuantity}>
+          <Button disabled={false} onClick={handleUpdateQuantity(-1)}>
             <Remove />
           </Button>
-          <p>5</p>
+          <p>{item.product?.numRating}</p>
 
-          <Button onClick={handleUpdateQuantity}>
+          <Button onClick={handleUpdateQuantity(+1)}>
             <Add />
           </Button>
         </div>
@@ -53,7 +63,7 @@ const CartItem = () => {
 
       {/* total price */}
       <div className="pr-5">
-        <p className="text-gray-700 font-medium"> Rs 99</p>
+        <p className="text-gray-700 font-medium"> Rs {item.sellingPrice}</p>
       </div>
       </div>
 {/* button  */}
@@ -67,4 +77,4 @@ const CartItem = () => {
   );
 };
 
-export default CartItem;
+export default CartItemCard;
