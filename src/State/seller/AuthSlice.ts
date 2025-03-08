@@ -112,6 +112,8 @@ const authSlice = createSlice({
     builder.addCase(sendLoginSignupOtp.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    
+      console.log("Intial Stater============",initialState.user);
     });
 
     builder.addCase(signin.fulfilled, (state, action) => {

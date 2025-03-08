@@ -46,6 +46,7 @@ const Checkout = () => {
 
   const hadlePaymentChange =(event:any)=>{
     setPaymentGateWay(event.target.value)
+    console.log(event.target.value)
   };
   return (
     <>
@@ -113,7 +114,7 @@ const Checkout = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AddressForm />
+          <AddressForm paymentMethod ={paymentGateWay} />
         </Box>
       </Modal>
     </>

@@ -129,6 +129,9 @@ const cartSlice = createSlice({
         state.cart = action.payload;
      
         console.log("Redux: New state:", state.cart);
+        console.log("Intial SD=tate ",initialState.cart)
+
+
         
       })
       .addCase(fetchUserCart.rejected, (state, action) => {

@@ -1,11 +1,12 @@
 import { Divider } from '@mui/material'
 import React from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router';
-import Order from './Order';
+
 import OrderDetails from './OrderDetails';
 import UseDetail from './UserDetail';
 import UserDetail from './UserDetail';
 import Address from './Address';
+import Order from './Order';
 import { logout } from '../../../State/seller/AuthSlice';
 import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../../State/Store';
